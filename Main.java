@@ -14,6 +14,7 @@ public class Main
 			Client client = new Client();
 			break;
 		case 2:
+			FileReceiveClient FileReceiveClient = new FileReceiveClient();
 			break;
 		case 3:
 			break;	
