@@ -54,6 +54,7 @@ public class FileReceiveClient
 			while(true)
 			{
 				String received = datainputstream.readUTF();
+
 				if(received.equals("sendingafile"))
 					break;
 				else
@@ -61,6 +62,8 @@ public class FileReceiveClient
 			}
 			String filename = "";
 			filename = datainputstream.readUTF();
+			int filesize = 0;
+			filesize = Integer.parseInt(datainputstream.readUTF());
 			File targetFile = new File(filename);
 			OutputStream file_outputstream = new FileOutputStream(targetFile);
 			//byte [] buffer = new byte[8 * 1024];
@@ -69,16 +72,15 @@ public class FileReceiveClient
 			
 			try
 			{
-				while(true)
-				{
-					String rec;
-					rec = datainputstream.readUTF();
-					byte b[] = rec.getBytes();
-					file_outputstream.write(b);
-				}
+					byte[] rec = new byte[filesize];
+					datainputstream.readFully(rec);
+					file_outputstream.write(rec);
+					System.out.println("file_received");
+				
 			}catch(Exception exception)
 			{
 				System.out.println("ERRORRR");
+				exception.printStackTrace();
 			}
 		}catch(IOException e){
 			e.printStackTrace();
