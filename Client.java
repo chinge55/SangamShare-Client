@@ -14,8 +14,8 @@ public class Client
 	{
 		Scanner scanner = new Scanner(System.in);
 		try
-		{
-			s= new Socket("192.168.100.149", 4000);
+		{      
+			s= new Socket(CheckForServer.serverip, 4000);
 		}catch(UnknownHostException e){
 			e.printStackTrace();
 		}catch(IOException e){
@@ -32,6 +32,7 @@ public class Client
                                 //Override
                                 public void run()
                                 {
+                                        int i =1;
                                         while(true)
                                         {
                                                 // read the message to del$
@@ -48,6 +49,7 @@ public class Client
                                                 	Thread.currentThread().interrupt();
                                                 	return;
                                                 }
+                                                
                                         }
                                 }       
 
